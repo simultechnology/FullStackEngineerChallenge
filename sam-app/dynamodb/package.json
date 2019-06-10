@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "dynamodb": "^1.2.0",
+    "dynamodb-admin": "^3.2.0"
+  }
+}

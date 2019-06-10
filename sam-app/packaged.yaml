@@ -1,0 +1,93 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: 'sam-app
+
+  Sample SAM Template for sam-app
+
+  '
+Globals:
+  Api:
+    Cors:
+      AllowMethods: '''OPTIONS,GET,POST,PUT,DELETE'''
+      AllowHeaders: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key'''
+      AllowOrigin: '''*'''
+  Function:
+    Timeout: 10
+Resources:
+  GetEmployees:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: s3://my-feedback-system/c83d57f1d204636b354325debf664f69
+      Handler: employees.lambdaHandler
+      Runtime: nodejs8.10
+      Events:
+        HelloWorld:
+          Type: Api
+          Properties:
+            Path: /employees
+            Method: get
+  GetEmployeeById:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: s3://my-feedback-system/c83d57f1d204636b354325debf664f69
+      Handler: employees.lambdaHandler
+      Runtime: nodejs8.10
+      Events:
+        HelloWorld:
+          Type: Api
+          Properties:
+            Path: /employee
+            Method: get
+  PostEmployees:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: s3://my-feedback-system/c83d57f1d204636b354325debf664f69
+      Handler: employees.lambdaHandler
+      Runtime: nodejs8.10
+      Events:
+        HelloWorld:
+          Type: Api
+          Properties:
+            Path: /employee
+            Method: post
+  PutEmployees:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: s3://my-feedback-system/c83d57f1d204636b354325debf664f69
+      Handler: employees.lambdaHandler
+      Runtime: nodejs8.10
+      Events:
+        HelloWorld:
+          Type: Api
+          Properties:
+            Path: /employee
+            Method: put
+  DeleteEmployees:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: s3://my-feedback-system/c83d57f1d204636b354325debf664f69
+      Handler: employees.lambdaHandler
+      Runtime: nodejs8.10
+      Events:
+        HelloWorld:
+          Type: Api
+          Properties:
+            Path: /employee
+            Method: delete
+  OptionsEmployees:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: s3://my-feedback-system/c83d57f1d204636b354325debf664f69
+      Handler: employees.lambdaHandler
+      Runtime: nodejs8.10
+      Events:
+        HelloWorld:
+          Type: Api
+          Properties:
+            Path: /employee
+            Method: options
+Outputs:
+  HelloWorldApi:
+    Description: API Gateway endpoint URL for Prod stage for Hello World function
+    Value:
+      Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello/
